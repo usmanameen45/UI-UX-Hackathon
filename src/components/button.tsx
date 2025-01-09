@@ -1,8 +1,8 @@
 "use client";
 import { useQuantityContext } from "@/contexts/itemQuantity";
 import React from "react";
-import { TailSpin } from "react-loader-spinner";
 import type { Data } from "@/data/cartItems";
+import ClipLoader from "react-spinners/ClipLoader";
 
 export function Button_01({
   btnText,
@@ -36,8 +36,8 @@ export function Button_02({
   cartItem: Data;
 }) {
   const { itemQuantity } = useQuantityContext() ?? {};
-  if (typeof itemQuantity === "number"){
-    cartItem.quantity = itemQuantity
+  if (typeof itemQuantity === "number") {
+    cartItem.quantity = itemQuantity;
   }
 
   const [isLoading, setIsLoading] = React.useState(false);
@@ -70,15 +70,11 @@ export function Button_02({
       onClick={addToCart}
     >
       {isLoading ? (
-        <TailSpin
-          visible={true}
-          height="24"
-          width="24"
-          color="#fff"
-          ariaLabel="Adding to cart"
-          radius="1"
-          wrapperStyle={{}}
-          wrapperClass=""
+        <ClipLoader
+          color={"white"}
+          size={18}
+          aria-label="Adding to cart"
+          data-testid="loader"
         />
       ) : (
         btnText
