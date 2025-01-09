@@ -10,7 +10,7 @@ export function Card_01({
   src: string;
   alt: string;
   title: string;
-  price: string;
+  price: number;
 }) {
   return (
     <div className="flex flex-col justify-start items-stretch gap-6">
@@ -39,7 +39,7 @@ export function Card_02({
   src: string;
   alt: string;
   title: string;
-  price: string;
+  price: number;
 }) {
   return (
     <div className="flex flex-col justify-start items-stretch gap-6">

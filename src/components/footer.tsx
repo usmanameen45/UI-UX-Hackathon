@@ -5,6 +5,7 @@ import { IoLogoInstagram } from "react-icons/io5";
 import { FaSkype } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { FaPinterest } from "react-icons/fa";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -26,19 +27,29 @@ export default function Footer() {
               <li className="font-montserrat text-base leading-[19.68px] font-normal">
                 Catogries
               </li>
-              <li>Crockey</li>
-              <li>Furniture</li>
-              <li>Home ware</li>
-              <li>Plant pots</li>
-              <li>Chairs</li>
+              <Link href="/shop" >
+                Crockey
+              </Link>
+              <Link href="/shop">
+                Furniture
+              </Link>
+              <Link href="/shop">
+                Home ware
+              </Link>
+              <Link href="/shop">
+                Plant pots
+              </Link>
+              <Link href="/shop">
+                Chairs
+              </Link>
             </ul>
             <ul className="flex flex-col gap-3 font-inter text-sm leading-[18.9px]">
               <li className="font-montserrat text-base leading-[19.68px] font-normal">
                 Our company
               </li>
-              <li>About us</li>
+              <Link href="/about">About us</Link>
               <li>Vacancies</li>
-              <li>Contact us</li>
+              <Link href="/about">Contact us</Link>
               <li>Privacy</li>
               <li>Returns policy</li>
             </ul>

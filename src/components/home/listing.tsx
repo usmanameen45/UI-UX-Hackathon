@@ -1,80 +1,120 @@
-import React from 'react'
-import {Card_01, Card_02} from "@/components/card";
+import React from "react";
+import { Card_01, Card_02 } from "@/components/card";
 import { Button_01 } from "@/components/button";
+import Link from "next/link";
+import { client } from "@/sanity/lib/client";
+import { urlFor } from "@/sanity/lib/image";
+import type { Product } from "@/data/productType";
+import { productsFetchQuery } from "@/data/fetchProductsQuery";
 
-export function Listing_01() {
-  return (
-    <div className="max-w-[1280px] mx-auto px-[26px] py-12 xl:py-20 text-[#2A254B] font-montserrat">
-            <p className="text-[20px] md:text-[32px] leading-[24.6px] md:leading-[39.36px]">New ceramics</p>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-5 md:mt-8">
-
-              <Card_01
-                src="/images/products/product_01.png"
-                alt="new ceramics"
-                title="Rustic Vase Set"
-                price="155"
-              />
-
-              <Card_01
-                src="/images/products/product_02.png"
-                alt="Lucky lamp"
-                title="The Lucky Lamp"
-                price="399"
-              />
-
-              <Card_01 
-                src="/images/products/product_03.png"
-                alt="Silky vase"
-                title="The Silky Vase"
-                price="125"
-              />
-
-              <Card_01
-                src="/images/products/product_04.png"
-                alt="Dandy chair"
-                title="The Dandy Chair"
-                price="155"
-              />
-            </div>
-            <div className="flex flex-col justify-center items-stretch md:items-center mt-[30px] md:mt-9">
-              <Button_01 btnText="View Collection" textColor="#2A254B" bgColor="#f9f9f9"/>
-            </div>
-          </div>
-  )
+async function getProducts() {
+  const data = await client.fetch(productsFetchQuery);
+  return data;
 }
 
-export function Listing_02() {
+export async function Listing_01({
+  sectionHeading,
+}: {
+  sectionHeading: string;
+}) {
+  const products = await getProducts();
+
   return (
     <div className="max-w-[1280px] mx-auto px-[26px] py-12 xl:py-20 text-[#2A254B] font-montserrat">
-            <p className="text-[20px] md:text-[32px] leading-[24.6px] md:leading-[39.36px]">Our popular products</p>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-5 md:mt-8">
+      <p className="text-[20px] md:text-[32px] leading-[24.6px] md:leading-[39.36px]">
+        {sectionHeading}
+      </p>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-5 md:mt-8">
+        {products.map((product: Product, index: number) => {
+          if (index >= 4) return null;
+          return (
+            <Link
+              href={`/shop/${product.slug.current}`}
+              key={product.slug.current}
+            >
+              <Card_01
+                src={urlFor(product.src).url()}
+                alt={product.src.alt}
+                title={product.title}
+                price={product.price}
+              />
+            </Link>
+          );
+        })}
+      </div>
+      <Link
+        className="flex flex-col justify-center items-stretch md:items-center mt-[30px] md:mt-9"
+        href="/shop"
+      >
+        <Button_01
+          btnText="View Collection"
+          textColor="#2A254B"
+          bgColor="#f9f9f9"
+        />
+      </Link>
+    </div>
+  );
+}
 
-              <div className="col-start-1 col-end-3 hidden md:block">
+export async function Listing_02() {
+  const products = await getProducts();
+  return (
+    <div className="max-w-[1280px] mx-auto px-[26px] py-12 xl:py-20 text-[#2A254B] font-montserrat">
+      <p className="text-[20px] md:text-[32px] leading-[24.6px] md:leading-[39.36px]">
+        Our popular products
+      </p>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-5 md:mt-8">
+        <div className="col-start-1 col-end-3 hidden md:block">
+          {products.map((product: Product) => {
+            if (product.slug.current !== "the-popular-suede-sofa-66368501")
+              return null;
+            return (
+              <Link
+                href={`/shop/${product.slug.current}`}
+                key={product.slug.current}
+              >
                 <Card_02
-                  src="/images/products/product_05.jpg"
-                  alt="Silky vase"
-                  title="The Silky Vase"
-                  price="125"
+                  src={urlFor(product.src).url()}
+                  alt={product.src.alt}
+                  title={product.title}
+                  price={product.price}
                 />
-              </div>
+              </Link>
+            );
+          })}
+        </div>
 
-              <Card_01
-                src="/images/products/product_01.png"
-                alt="new ceramics"
-                title="Rustic Vase Set"
-                price="155"
-              />
-
-              <Card_01
-                src="/images/products/product_02.png"
-                alt="Lucky lamp"
-                title="The Lucky Lamp"
-                price="399"
-              />
-            </div>
-            <div className="flex flex-col justify-center items-stretch md:items-center mt-[30px] md:mt-9">
-              <Button_01 btnText="View Collection" textColor="#2A254B" bgColor="#f9f9f9"/>
-            </div>
-          </div>
-  )
+        {products.map((product: Product, index: number) => {
+          if (
+            product.slug.current !== "the-popular-suede-sofa-66368501" &&
+            index < 2
+          ) {
+            return (
+              <Link
+                href={`/shop/${product.slug.current}`}
+                key={product.slug.current}
+              >
+                <Card_01
+                  src={urlFor(product.src).url()}
+                  alt={product.src.alt}
+                  title={product.title}
+                  price={product.price}
+                />
+              </Link>
+            );
+          }
+        })}
+      </div>
+      <Link
+        className="flex flex-col justify-center items-stretch md:items-center mt-[30px] md:mt-9"
+        href="/shop"
+      >
+        <Button_01
+          btnText="View Collection"
+          textColor="#2A254B"
+          bgColor="#f9f9f9"
+        />
+      </Link>
+    </div>
+  );
 }

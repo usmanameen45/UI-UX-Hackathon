@@ -1,6 +1,7 @@
 import React from 'react'
 import Image from "next/image";
 import { Button_01 } from "@/components/button";
+import Link from 'next/link';
 export default function Feature_2() {
   return (
     <section className="flex flex-col md:flex-row justify-between items-stretch">
@@ -12,14 +13,14 @@ export default function Feature_2() {
                 When we started Avion, the idea was simple. Make high quality
                 furniture affordable and available for the mass market.
               </p>
-              <p className="font-inter text-sm md:text-base leading-[21px] md:leading-[21.6px] mt-[14px] text-[#505977]">
+              <p className="font-inter text-sm md:text-base leading-[21px] md:leading-[21.6px] mt-[14px] text-[#505977] mb-[62px]">
                 Handmade, and lovingly crafted furniture and homeware is what we
                 live, breathe and design so our Chelsea boutique become the
                 hotbed for the London interior design community.
               </p>
-              <div className="flex flex-col justify-center items-stretch md:items-start mt-[62px]">
+              <Link className="flex flex-col justify-center items-stretch md:items-start md:mt-auto" href="/about">
                 <Button_01 btnText="Get in touch" textColor="#2A254B" bgColor="#F9F9F9" />
-              </div>
+              </Link>
             </div>
             <div className="relative aspect-[80/67] md:aspect-auto lg:aspect-[80/67] md:basis-1/2">
               <Image
