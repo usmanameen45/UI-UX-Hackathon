@@ -1,7 +1,7 @@
 import Footer from "@/components/footer";
 import { Header_product } from "@/components/header";
 import Feature_2 from "@/components/home/feature";
-import { Listing_01 } from "@/components/home/listing";
+import { RelatedProducts } from "@/components/home/listing";
 import Sign_up from "@/components/home/sign_up";
 import React from "react";
 import Image from "next/image";
@@ -19,22 +19,13 @@ interface ProductProps {
 
 async function Product({ params }: ProductProps) {
   const products = await client.fetch(productsFetchQuery);
+  console.log(products);
 
   const slug = (await params).product;
 
-  const [product] = products.filter(
+  const product = products.find(
     (product: productType) => product.slug.current === slug
   );
-
-  const cartItemData = {
-    src: urlFor(product.src).url(),
-    alt: product.src.alt,
-    title: product.title,
-    slug: product.slug.current,
-    description: product.description,
-    price: product.price,
-    quantity: 1
-  }
 
   if (!product) {
     return (
@@ -46,14 +37,39 @@ async function Product({ params }: ProductProps) {
     );
   }
 
+  // const [productCategory] = product.category._ref.split("-");
+
+  const similarProducts = products.filter(
+    (singleProduct: productType) => {
+      // const [singleProductCategory] = singleProduct.category._ref.split("-");
+      const isTagIncluded = singleProduct.tags?.some(
+        (tag: string) => product.tags?.includes(tag)
+      )
+      return (
+        (singleProduct.category.name === product.category.name || isTagIncluded) && 
+        singleProduct._id !== product._id
+      )
+    }
+  );
+
+  const cartItemData = {
+    src: urlFor(product.image).url(),
+    alt: product.name,
+    title: product.name,
+    slug: product.slug.current,
+    description: product?.description,
+    price: product.price,
+    quantity: 1
+  }
+
   return (
     <QuantityProvider>
       <Header_product />
       <section className="max-w-[1440px] mx-auto flex flex-col md:flex-row justify-start items-stretch">
         <div className="relative aspect-[390/380] bg-[#f9f9f9] md:basis-1/2">
           <Image
-            src={urlFor(product.src).url()}
-            alt={product.src.alt}
+            src={urlFor(product.image).url()}
+            alt={product.name}
             fill={true}
             className={`object-contain object-center`}
           />
@@ -61,7 +77,7 @@ async function Product({ params }: ProductProps) {
         <div className="pt-7 px-6 pb-12 lg:p-[60px] xl:p-[100px] flex flex-col justify-start items-stretch gap-7 md:gap-[51px] md:basis-1/2">
           <div className="flex flex-col justify-start items-start gap-3">
             <h2 className="font-montserrat text-[24px] md:text-4xl leading-[33.6px] md:leading-[44.48px] text-[#2A254B]">
-              {product.title}
+              {product.name}
             </h2>
             <p className="font-montserrat text-[20px] md:text-2xl leading-[28px] md:leading-[32.4px] text-[#2A254B]">
               &pound;{product.price}
@@ -81,9 +97,9 @@ async function Product({ params }: ProductProps) {
               upholstery.`}
             </p>
             <ul className="font-inter text-sm md:text-base leading-[21px] md:leading-[21.6px] text-[#2A254B] md:text-[#505977] list-disc list-inside">
-              <li>Premium material</li>
-              <li>Handmade upholstery</li>
-              <li>Quality timeless classic</li>
+              {product.features.map((feature: string, index: number) => (
+                <li key={index}>{feature}</li>
+              ))}
             </ul>
           </div>
 
@@ -97,7 +113,7 @@ async function Product({ params }: ProductProps) {
                   Height
                 </p>
                 <p className="font-inter text-sm leading-[21px] md:leading-[21.6px] text-[#2A254B] md:text-[#505977]">
-                  110cm
+                  {product.dimensions.height}
                 </p>
               </div>
               <div className="basis-1/3 border-r border-[#EBE8F4] flex flex-col justify-start items-center gap-[15px]">
@@ -105,7 +121,7 @@ async function Product({ params }: ProductProps) {
                   Width
                 </p>
                 <p className="font-inter text-sm leading-[21px] md:leading-[21.6px] text-[#2A254B] md:text-[#505977]">
-                  75cm
+                  {product.dimensions.width}
                 </p>
               </div>
               <div className="basis-1/3 flex flex-col justify-start items-end gap-[15px]">
@@ -113,7 +129,7 @@ async function Product({ params }: ProductProps) {
                   Depth
                 </p>
                 <p className="font-inter text-sm leading-[21px] md:leading-[21.6px] text-[#2A254B] md:text-[#505977]">
-                  50cm
+                  {product.dimensions.depth}
                 </p>
               </div>
             </div>
@@ -139,7 +155,7 @@ async function Product({ params }: ProductProps) {
           </div>
         </div>
       </section>
-      <Listing_01 sectionHeading="You might also like" />
+      <RelatedProducts relatedProducts={similarProducts} />
       <Feature_2 />
       <Sign_up />
       <Footer />

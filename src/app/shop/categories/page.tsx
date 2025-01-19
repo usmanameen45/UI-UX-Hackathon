@@ -10,7 +10,7 @@ import { urlFor } from "@/sanity/lib/image";
 import type { Product } from "@/data/productType";
 import { productsFetchQuery } from "@/data/fetchProductsQuery";
 
-async function Shop() {
+async function Categories() {
   const data = await client.fetch(productsFetchQuery);
 
   return (
@@ -91,4 +91,4 @@ async function Shop() {
   );
 }
 
-export default Shop;
+export default Categories;

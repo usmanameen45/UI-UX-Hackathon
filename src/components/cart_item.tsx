@@ -72,7 +72,7 @@ function CartItem({
             <h5 className="font-montserrat leading-[22.4px]">{title}</h5>
             <p className="text-sm font-inter leading-[21px]">
               {description
-                ? description
+                ? description.slice(0, 60) + (description.length > 60 ? "..." : "")
                 : "A timeless ceramic vase with a tri color grey glaze."}
             </p>
             <p className="font-inter text-base leading-6">&pound;{itemPrice}</p>

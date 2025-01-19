@@ -45,25 +45,25 @@ export function Header() {
       <nav className="hidden md:block w-full py-5">
         <ul className="flex justify-center items-center gap-11 w-full text-[#726e8d] font-inter">
           <li className="hover:text-[#22202e] transition-colors duration-300 cursor-pointer">
-            <Link href="/shop">Plant pots</Link>
+            <Link href="/shop/categories/plant-pots">Plant pots</Link>
           </li>
           <li className="hover:text-[#22202e] transition-colors duration-300 cursor-pointer">
-            <Link href="/shop">Ceramics</Link>
+            <Link href="/shop/categories/ceramics">Ceramics</Link>
           </li>
           <li className="hover:text-[#22202e] transition-colors duration-300 cursor-pointer">
-            <Link href="/shop">Tables</Link>
+            <Link href="/shop/categories/tables">Tables</Link>
           </li>
           <li className="hover:text-[#22202e] transition-colors duration-300 cursor-pointer">
-            <Link href="/shop">Chairs</Link>
+            <Link href="/shop/categories/chairs">Chairs</Link>
           </li>
           <li className="hover:text-[#22202e] transition-colors duration-300 cursor-pointer">
-            <Link href="/shop">Crockery</Link>
+            <Link href="/shop/categories/crockery">Crockery</Link>
           </li>
           <li className="hover:text-[#22202e] transition-colors duration-300 cursor-pointer">
-            <Link href="/shop">Tableware</Link>
+            <Link href="/shop/categories/tableware">Tableware</Link>
           </li>
           <li className="hover:text-[#22202e] transition-colors duration-300 cursor-pointer">
-            <Link href="/shop">Cutlery</Link>
+            <Link href="/shop/categories/cutlery">Cutlery</Link>
           </li>
         </ul>
       </nav>
@@ -142,43 +142,43 @@ export function Header_about() {
                 All products
               </Link>
               <Link
-                href="/shop"
+                href="/shop/categories/plant-pots"
                 className="hover:text-[#22202e] transition-all duration-300"
               >
                 Plant pots
               </Link>
               <Link
-                href="/shop"
+                href="/shop/categories/ceramics"
                 className="hover:text-[#22202e] transition-all duration-300"
               >
                 Ceramics
               </Link>
               <Link
-                href="/shop"
+                href="/shop/categories/tables"
                 className="hover:text-[#22202e] transition-all duration-300"
               >
                 Tables
               </Link>
               <Link
-                href="/shop"
+                href="/shop/categories/chairs"
                 className="hover:text-[#22202e] transition-all duration-300"
               >
                 Chairs
               </Link>
               <Link
-                href="/shop"
+                href="/shop/categories/crockery"
                 className="hover:text-[#22202e] transition-all duration-300"
               >
                 Crockery
               </Link>
               <Link
-                href="/shop"
+                href="/shop/categories/tableware"
                 className="hover:text-[#22202e] transition-all duration-300"
               >
                 Tableware
               </Link>
               <Link
-                href="/shop"
+                href="/shop/categories/cutlery"
                 className="hover:text-[#22202e] transition-all duration-300"
               >
                 Cutlery
@@ -200,19 +200,19 @@ export function Header_about() {
                 All products
               </Link>
               <Link
-                href="/shop"
+                href="/shop/categories/plant-pots"
                 className="hover:text-[#22202e] transition-all duration-300"
               >
                 Plant pots
               </Link>
               <Link
-                href="/shop"
+                href="/shop/categories/ceramics"
                 className="hover:text-[#22202e] transition-all duration-300"
               >
                 Ceramics
               </Link>
               <Link
-                href="/shop"
+                href="/shop/categories/tables"
                 className="hover:text-[#22202e] transition-all duration-300"
               >
                 Tables
@@ -220,25 +220,25 @@ export function Header_about() {
             </CarouselItem>
             <CarouselItem className="flex justify-center items-center gap-11 p-0">
               <Link
-                href="/shop"
+                href="/shop/categories/chairs"
                 className="hover:text-[#22202e] transition-all duration-300 cursor-pointer"
               >
                 Chairs
               </Link>
               <Link
-                href="/shop"
+                href="/shop/categories/crockery"
                 className="hover:text-[#22202e] transition-all duration-300 cursor-pointer"
               >
                 Crockery
               </Link>
               <Link
-                href="/shop"
+                href="/shop/categories/tableware"
                 className="hover:text-[#22202e] transition-all duration-300 cursor-pointer"
               >
                 Tableware
               </Link>
               <Link
-                href="/shop"
+                href="/shop/categories/cutlery"
                 className="hover:text-[#22202e] transition-all duration-300 cursor-pointer"
               >
                 Cutlery
@@ -256,18 +256,18 @@ export function Header_about() {
           <CarouselContent className="p-0">
             <CarouselItem className="flex justify-center items-center gap-11 p-0">
               <Link href="/shop">All products</Link>
-              <Link href="/shop">Plant pots</Link>
+              <Link href="/shop/categories/plant-pots">Plant pots</Link>
             </CarouselItem>
             <CarouselItem className="flex justify-center items-center gap-11 p-0">
-              <Link href="/shop">Ceramics</Link>
-              <Link href="/shop">Tables</Link>
+              <Link href="/shop/categories/ceramics">Ceramics</Link>
+              <Link href="/shop/categories/tables">Tables</Link>
             </CarouselItem>
             <CarouselItem className="flex justify-center items-center gap-11 p-0">
-              <Link href="/shop">Chairs</Link>
-              <Link href="/shop">Crockery</Link>
+              <Link href="/shop/categories/chairs">Chairs</Link>
+              <Link href="/shop/categories/crockery">Crockery</Link>
             </CarouselItem>
             <CarouselItem className="flex justify-center items-center gap-11 p-0">
-              <Link href="/shop">Tableware</Link>
+              <Link href="/shop/categories/tableware">Tableware</Link>
             </CarouselItem>
           </CarouselContent>
           <CarouselPrevious className="absolute left-6 top-1/2 -translate-x-1/2 lg:hidden" />
@@ -316,25 +316,25 @@ export function Header_product() {
         </h1>
         <ul className="lg:flex justify-center items-center gap-11 w-full text-[#726e8d] font-inter hidden">
           <li className="hover:text-[#22202e] transition-colors duration-300 cursor-pointer">
-            <Link href="/shop">Plant pots</Link>
+            <Link href="/shop/categories/plant-pots">Plant pots</Link>
           </li>
           <li className="hover:text-[#22202e] transition-colors duration-300 cursor-pointer">
-            <Link href="/shop">Ceramics</Link>
+            <Link href="/shop/categories/ceramics">Ceramics</Link>
           </li>
           <li className="hover:text-[#22202e] transition-colors duration-300 cursor-pointer">
-            <Link href="/shop">Tables</Link>
+            <Link href="/shop/categories/tables">Tables</Link>
           </li>
           <li className="hover:text-[#22202e] transition-colors duration-300 cursor-pointer">
-            <Link href="/shop">Chairs</Link>
+            <Link href="/shop/categories/chairs">Chairs</Link>
           </li>
           <li className="hover:text-[#22202e] transition-colors duration-300 cursor-pointer">
-            <Link href="/shop">Crockery</Link>
+            <Link href="/shop/categories/crockery">Crockery</Link>
           </li>
           <li className="hover:text-[#22202e] transition-colors duration-300 cursor-pointer">
-            <Link href="/shop">Tableware</Link>
+            <Link href="/shop/categories/tableware">Tableware</Link>
           </li>
           <li className="hover:text-[#22202e] transition-colors duration-300 cursor-pointer">
-            <Link href="/shop">Cutlery</Link>
+            <Link href="/shop/categories/cutlery">Cutlery</Link>
           </li>
         </ul>
         <div className="flex justify-between items-center gap-5">

@@ -1,7 +1,15 @@
-export const productsFetchQuery = `*[_type == "products"]{
-  src,
-  title,
+export const productsFetchQuery = `*[_type == "product"]{
+  _id,
+  slug,
+  tags,
+  image,
   price,
+  dimensions,
+  quantity,
   description,
-  slug
+  features,
+  name,
+  "category": category->{
+    name,
+  }
 }`

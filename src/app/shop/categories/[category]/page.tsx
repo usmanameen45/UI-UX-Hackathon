@@ -10,15 +10,20 @@ import { urlFor } from "@/sanity/lib/image";
 import type { Product } from "@/data/productType";
 import { productsFetchQuery } from "@/data/fetchProductsQuery";
 
-async function Shop() {
+async function Category({ params }: { params: Promise<{ category: string }> }) {
   const data = await client.fetch(productsFetchQuery);
+  const slug = (await params).category;
+  const filteredProducts = data.filter(
+    (item: Product) =>
+      item.category.name.toLowerCase() === slug.replace("-", " ")
+  );
 
   return (
     <>
       <Header />
       <div className='pt-16 md:pt-[123px] pb-8 md:pb-9 px-[92px] lg:px-0 bg-[url("/images/shop_hero_bg.jpeg")] bg-cover bg-center'>
         <h1 className="max-w-[1280px] mx-auto text-4xl leading-[50.6px] text-white font-montserrat text-center lg:text-start lg:pl-20">
-          All products
+          {slug.charAt(0).toUpperCase() + slug.slice(1)}
         </h1>
       </div>
 
@@ -62,21 +67,24 @@ async function Shop() {
 
       <div className="max-w-[1280px] mx-auto flex flex-col justify-start items-stretch py-[28px] px-6 md:px-20 gap-9">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-x-5 md:gap-y-10">
-          {data.map((product: Product) => {
-            return (
-              <Link
-                href={`/shop/${product.slug.current}`}
-                key={product._id}
-              >
-                <Card_01
-                  src={urlFor(product.image).url()}
-                  alt={product.name}
-                  title={product.name}
-                  price={product.price}
-                />
-              </Link>
-            );
-          })}
+          {filteredProducts.length > 0 ? (
+            filteredProducts.map((product: Product) => {
+              return (
+                <Link href={`/shop/${product.slug.current}`} key={product._id}>
+                  <Card_01
+                    src={urlFor(product.image).url()}
+                    alt={product.name}
+                    title={product.name}
+                    price={product.price}
+                  />
+                </Link>
+              );
+            })
+          ) : (
+            <h3 className="text-[20px] md:text-[32px] leading-[24.6px] md:leading-[39.36px] text-[#2A254B] font-montserrat text-nowrap">
+              Products not found
+            </h3>
+          )}
         </div>
         <div className="flex flex-col justify-center items-stretch md:items-center md:mb-5">
           <Button_01
@@ -91,4 +99,4 @@ async function Shop() {
   );
 }
 
-export default Shop;
+export default Category;

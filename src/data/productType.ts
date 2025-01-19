@@ -1,17 +1,28 @@
 export interface Product {
-  src: {
+  _id: string;
+  slug: {
     _type: string;
-    alt: string;
+    current: string;
+  }
+  tags: string[];
+  image: {
+    _type: string;
     asset: {
       _ref: string;
       _type: string;
     };
   };
-  title: string;
   price: number;
-  description: string | null;
-  slug: {
-    current: string;
-    _type: string;
+  dimensions: {
+    height: string;
+    width: string;
+    depth: string;
+  };
+  quantity: number;
+  description: string;
+  features: string[];
+  name: string;
+  category: {
+    name: string;
   };
 }
